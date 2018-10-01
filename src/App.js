@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { Spring, Trail } from 'react-spring';
+import { TimingAnimation, Easing } from 'react-spring/dist/addons';
 
 class App extends Component {
   constructor() {
@@ -45,6 +47,18 @@ class App extends Component {
         >
         {this.state.newCake && this.state.cakes.map((cake) => <p key={cake}>{cake}</p>)}
         </CSSTransitionGroup>
+          <Spring
+            from={{opacity: 0}}
+            to={{opacity: 1}}
+            impl={TimingAnimation}
+            config={{
+              duration: 5000,
+              easing: Easing.ease
+            }}
+            >
+            {(styles) => <div style={styles}>fade in</div>}
+          </Spring>
+
       </div>
     );
   }
